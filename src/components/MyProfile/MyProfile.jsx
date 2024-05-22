@@ -23,9 +23,9 @@ const MyProfile = () => {
 
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState({
-    username: username || '',
-    phone: phone || '',
-    birthday: birthday || '',
+    username: username,
+    phone: phone,
+    birthday: birthday,
   });
 
   const handleInputChange = (e) => {
@@ -40,7 +40,7 @@ const MyProfile = () => {
     try {
       await dispatch(updateUser({ userId, userData }));
       setEditMode(false);
-      toast.success('Ваш профіль успішно оновлено');
+      toast.success('Ваш профіль успішно оновлено');  
     } catch (error) {
       toast.error('Помилка під час оновлення профілю');
     }
@@ -74,7 +74,7 @@ const MyProfile = () => {
                             onChange={handleInputChange}
                           />
                         ) : (
-                          <p>{username} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                          <p>{userData.username} <button onClick={() => setEditMode(true)}>Edit</button></p>
                         )}
 
                         <label htmlFor="email">Ваша емейл:</label><p>{email}</p>
@@ -90,7 +90,7 @@ const MyProfile = () => {
                             onChange={handleInputChange}
                           />
                         ) : (
-                          <p>{phone} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                          <p>{userData.phone} <button onClick={() => setEditMode(true)}>Edit</button></p>
                         )}
 
                         <label htmlFor="birthday">Ваша дата дня народження:</label>
@@ -103,7 +103,7 @@ const MyProfile = () => {
                             onChange={handleInputChange}
                           />
                         ) : (
-                          <p>{birthday} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                          <p>{userData.birthday} <button onClick={() => setEditMode(true)}>Edit</button></p>
                         )}
                     </div>
 
