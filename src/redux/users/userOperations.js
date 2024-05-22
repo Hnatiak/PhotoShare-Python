@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { store } from '../../redux/store';
 
 // export const updateUser = createAsyncThunk(
 //     'auth/updateUser',
@@ -48,8 +49,9 @@ import axios from 'axios';
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async ({ userId, userData }, { rejectWithValue }) => {
-    try {
-      const token = localStorage.getItem('token');
+    try {      
+      const state = store.getState();
+      const token = state.auth.access_token;
       const response = await axios.put(`/api/users/`, userData, {
         headers: {
           'Authorization': `Bearer ${token}`, // Передача токена в заголовках
