@@ -81,6 +81,13 @@ export const authSlice = createSlice({
       })
       .addCase(logout.rejected, (state, action) => {
         state.error = action.payload;
+        if (action.payload.status === 401)
+        {
+          state.user = { username: null, email: null };
+          state.access_token = '';
+          state.refresh_token = '';
+          state.isLoggedIn = false;
+        }
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;

@@ -43,6 +43,9 @@ export const login = async (userData) => {
       username: userData.email,
       password: userData.password
     }));
+    // const token = response.data['access_token'];
+    // localStorage.setItem('token', token);
+
     return response.data;
   } catch (error) {
     throw new Error(error.response?.data?.detail || 'Login failed');
@@ -79,7 +82,7 @@ export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
     await axios.post('api/auth/logout');
     clearAuthHeader();
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({status: error.response.status, message: error.message});
   }
 });
 
