@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { lazy } from "react";
 import { SharedLayout } from "./components/SharedLayout/SharedLayout";
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 // import articlesData from "./components/Articles/ArticlesContent/articles";
 // import boxesData from "./components/Projects/Content/boxs";
 // import servicesData from "./components/Service/ServiceElements/services";
@@ -44,7 +44,7 @@ export const App = () => {
   }, [dispatch]);
 
   return (
-    <Router>
+    <>
       <Routes>
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<HomePage />} />
@@ -70,6 +70,6 @@ export const App = () => {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </Router>
+    </>
   );
 };
