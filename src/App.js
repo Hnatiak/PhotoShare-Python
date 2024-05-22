@@ -51,6 +51,7 @@ export const App = () => {
           <Route path="/auth/:id" element={<AuthPage />} />
           <Route path="/auth/confirmed_email" element={<EmailConfirmation />} />
           <Route path="/profile" element={<MyProfile />} />
+          <Route path="/user/updateUser" element={<MyProfile />} />
           {/* <Route path="/services" element={<Services />} />
           <Route path="/services/:link" element={<ServiceElements services={servicesData} />} />
           <Route path="/projects" element={<Projects />} />
