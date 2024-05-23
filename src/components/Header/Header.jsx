@@ -13,6 +13,7 @@ import {
 import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 // selectCurrentUser,
+// eslint-disable-next-line
 import { setName } from '../../redux/users/userSelectors';
 import Logo from '../Logo/Logo';
 // import { toast } from 'react-toastify';
