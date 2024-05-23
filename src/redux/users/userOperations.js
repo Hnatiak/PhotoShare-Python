@@ -66,6 +66,24 @@ export const updateUser = createAsyncThunk(
 );
 
 
+
+export const fetchUsers = createAsyncThunk(
+  'users/fetchUsers',
+  async ({ skip = 0, limit = 10 }, thunkAPI) => {
+    try {
+      const response = await axios.get(`/api/users/all?skip=${skip}&limit=${limit}`);
+      if (Array.isArray(response.data)) {
+        return response.data; // Make sure this is the actual array of users
+      } else {
+        throw new Error('Expected an array of users');
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
 // export const updateUser = createAsyncThunk(
 //   'user/updateUser',
 //   async ({ userId, userData }, { rejectWithValue }) => {

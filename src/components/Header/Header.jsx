@@ -54,7 +54,12 @@ const Header = () => {
     setIsModalTelephoneOpen(false);
   };
 
-  const username = useSelector(setName);
+  // const username = useSelector(setName);
+  const user = useSelector(state => state.user.user);
+  console.log(user)
+  const username = useSelector((state) => state.auth.user.username);
+  console.log(username)
+  const role = useSelector((state) => state.auth.user.role);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -99,7 +104,9 @@ const Header = () => {
               {!isLoggedInUser && <FontAwesomeIcon icon={faUser} style={{ width: 20, height: 20, padding: '0px' }} />}
             </Ab> 
             }
-            {isLoggedInUser && <A style={{ padding: '0px', margin: '0px' }} to="/user/updateUser">{username}</A>}
+            {isLoggedInUser && <A style={{ padding: '0px', margin: '0px' }} to="/user/updateUser">{user.username}</A>
+          }
+          {role === 'admin' && (<A style={{ padding: '0px', margin: '0px' }} to="/users/fetchUsers">Адмін панель</A>)}
           </MenuDiv>
         </Menu>
       )}

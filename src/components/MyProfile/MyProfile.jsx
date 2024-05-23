@@ -12,6 +12,8 @@ const MyProfile = () => {
   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
   const user = useSelector(state => state.user.user);
 
+  // const user = useSelector(state => state.auth.user);
+
   const [editMode, setEditMode] = useState(false);
   const [userData, setUserData] = useState({
     username: user?.username || '',

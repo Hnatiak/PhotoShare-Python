@@ -15,6 +15,7 @@ import { refreshUser } from "./redux/auth/authOperations.js";
 const HomePage = lazy(() => import("./pages/HomePage"));
 const EmailConfirmation = lazy(() => import("./components/ConfirmedEmail/ConfirmedEmail.jsx"))
 const MyProfile = lazy(() => import("./components/MyProfile/MyProfile.jsx"))
+const AllUsers = lazy(() => import("./components/AllUsers/AllUsers.jsx"))
 // const Projects = lazy(() => import("./pages/ProjectsPage"));
 // const ProductDetailsPage = lazy(() => import("./components/Projects/ProductDetailsPage/ProductDetailsPage"));
 // const Services = lazy(() => import("./pages/ServicesPage"));
@@ -52,6 +53,7 @@ export const App = () => {
           <Route path="/auth/confirmed_email" element={<EmailConfirmation />} />
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/user/updateUser" element={<MyProfile />} />
+          <Route path="/users/fetchUsers" element={<AllUsers />} />
           {/* <Route path="/services" element={<Services />} />
           <Route path="/services/:link" element={<ServiceElements services={servicesData} />} />
           <Route path="/projects" element={<Projects />} />

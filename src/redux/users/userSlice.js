@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUser } from './userOperations'
+import { updateUser, fetchUsers } from './userOperations'
 
 const initialState = {
     user: null,
@@ -32,6 +32,18 @@ const initialState = {
         .addCase(updateUser.rejected, (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
+        })
+        .addCase(fetchUsers.pending, (state) => {
+          state.loading = true;
+          state.error = null;
+        })
+        .addCase(fetchUsers.fulfilled, (state, action) => {
+          state.loading = false;
+          state.users = action.payload;
+        })
+        .addCase(fetchUsers.rejected, (state, action) => {
+          state.loading = false;
+          state.error = action.error.message;
         });
     },
   });
