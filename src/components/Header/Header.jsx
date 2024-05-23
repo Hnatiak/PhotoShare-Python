@@ -18,6 +18,7 @@ import Logo from '../Logo/Logo';
 // import { toast } from 'react-toastify';
 
 const Header = () => {
+  // eslint-disable-next-line
   const [selectedMenu, setSelectedMenu] = useState('/');
   const location = useLocation();
   // eslint-disable-next-line

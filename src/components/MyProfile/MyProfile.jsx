@@ -1,12 +1,186 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../redux/users/userOperations';
+import { logout } from '../../redux/auth/authOperations';
+import { toast } from 'react-toastify';
+import { Img, StyledLink, LogOut } from './MyProfile.styled';
+
+const MyProfile = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
+  const user = useSelector(state => state.user.user);
+
+  const [editMode, setEditMode] = useState(false);
+  const [userData, setUserData] = useState({
+    username: user?.username || '',
+    phone: user?.phone || '',
+    birthday: user?.birthday || '',
+  });
+
+  useEffect(() => {
+    setUserData({
+      username: user?.username || '',
+      phone: user?.phone || '',
+      birthday: user?.birthday || '',
+    });
+  }, [user]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setUserData(prevUserData => ({
+      ...prevUserData,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdateUser = async () => {
+    try {
+      await dispatch(updateUser({ userId: user.id, userData })).unwrap();
+      setEditMode(false);
+      toast.success('Ваш профіль успішно оновлено');
+    } catch (error) {
+      toast.error('Помилка під час оновлення профілю');
+      setUserData(prevUserData => ({
+        ...prevUserData,
+        username: user?.username || '',
+        phone: user?.phone || '',
+        birthday: user?.birthday || '',
+      }));
+    }
+  };
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout());
+      navigate('/');
+      toast.success('Ви успішно розлогінились');
+    } catch (error) {
+      console.log('Сталася помилка під час виходу:', error);
+      toast.error('Під час розлогінення сталася помилка');
+    }
+  };
+
+  return (
+    <div>
+      {user && (
+        <div>
+          {isLoggedInUser && (
+            <div>
+              <Img src={user.avatar} alt="" />
+              <div>
+                <label htmlFor="username">Ваше ім'я</label>
+                {editMode ? (
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={userData.username}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p>{userData.username} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                )}
+
+                <label htmlFor="email">Ваша емейл:</label><p>{user.email}</p>
+                <label htmlFor="role">Ваша роль:</label><p>{user.role}</p>
+
+                <label htmlFor="phone">Ваш номер телефону:</label>
+                {editMode ? (
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={userData.phone}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p>{userData.phone} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                )}
+
+                <label htmlFor="birthday">Ваша дата дня народження:</label>
+                {editMode ? (
+                  <input
+                    type="date"
+                    id="birthday"
+                    name="birthday"
+                    value={userData.birthday}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p>{userData.birthday} <button onClick={() => setEditMode(true)}>Edit</button></p>
+                )}
+              </div>
+
+              {editMode && (
+                <button type="submit" onClick={handleUpdateUser}>Зберегти</button>
+              )}
+              <LogOut onClick={handleLogout}>Вийти</LogOut>
+            </div>
+          )}
+          {!isLoggedInUser && (
+            <div>
+              <div>Please Register Here: <StyledLink to="/auth/register">Register</StyledLink></div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MyProfile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState, useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { updateUser } from '../../redux/users/userOperations';
 
 // const MyProfile = () => {
 //   const dispatch = useDispatch();
-//   const user = useSelector(state => state.user.user);
-//   const isLoading = useSelector(state => state.user.isLoading);
-//   const error = useSelector(state => state.user.error);
+//   const user = useSelector(state => state.auth.user);
+//   const isLoading = useSelector(state => state.auth.isLoading);
+//   const error = useSelector(state => state.auth.error);
 
 //   const [editMode, setEditMode] = useState(false);
 //   const [userData, setUserData] = useState({
@@ -112,84 +286,84 @@
 
 
 
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUser } from '../../redux/users/userOperations';
+// import React, { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { updateUser } from '../../redux/users/userOperations';
 
-const MyProfile = () => {
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.user.user);
-  const isLoading = useSelector(state => state.user.isLoading);
-  const error = useSelector(state => state.user.error);
+// const MyProfile = () => {
+//   const dispatch = useDispatch();
+//   const user = useSelector(state => state.user.user);
+//   const isLoading = useSelector(state => state.user.isLoading);
+//   const error = useSelector(state => state.user.error);
 
-  const [userData, setUserData] = useState({
-    username: user?.username || '',
-    phone: user?.phone || '',
-    birthday: user?.birthday || '',
-  });
+//   const [userData, setUserData] = useState({
+//     username: user?.username || '',
+//     phone: user?.phone || '',
+//     birthday: user?.birthday || '',
+//   });
 
-  useEffect(() => {
-    setUserData({
-      username: user?.username || '',
-      phone: user?.phone || '',
-      birthday: user?.birthday || '',
-    });
-  }, [user]);
+//   useEffect(() => {
+//     setUserData({
+//       username: user?.username || '',
+//       phone: user?.phone || '',
+//       birthday: user?.birthday || '',
+//     });
+//   }, [user]);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData(prevUserData => ({
-      ...prevUserData,
-      [name]: value,
-    }));
-  };
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setUserData(prevUserData => ({
+//       ...prevUserData,
+//       [name]: value,
+//     }));
+//   };
 
-  const handleUpdateUser = async () => {
-    try {
-      await dispatch(updateUser({ userId: user.id, userData })).unwrap();
-    } catch (error) {
-      console.error('Error updating user:', error);
-    }
-  };
+//   const handleUpdateUser = async () => {
+//     try {
+//       await dispatch(updateUser({ userId: user.id, userData })).unwrap();
+//     } catch (error) {
+//       console.error('Error updating user:', error);
+//     }
+//   };
 
-  return (
-    <div>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Error: {error}</div>}
-      {user && (
-        <div>
-          <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={userData.username}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="phone">Phone:</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={userData.phone}
-            onChange={handleInputChange}
-          />
-          <label htmlFor="birthday">Birthday:</label>
-          <input
-            type="date"
-            id="birthday"
-            name="birthday"
-            value={userData.birthday}
-            onChange={handleInputChange}
-          />
-          <button onClick={handleUpdateUser}>Save Changes</button>
-        </div>
-      )}
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       {isLoading && <div>Loading...</div>}
+//       {error && <div>Error: {error}</div>}
+//       {user && (
+//         <div>
+//           <label htmlFor="username">Username:</label>
+//           <input
+//             type="text"
+//             id="username"
+//             name="username"
+//             value={userData.username}
+//             onChange={handleInputChange}
+//           />
+//           <label htmlFor="phone">Phone:</label>
+//           <input
+//             type="tel"
+//             id="phone"
+//             name="phone"
+//             value={userData.phone}
+//             onChange={handleInputChange}
+//           />
+//           <label htmlFor="birthday">Birthday:</label>
+//           <input
+//             type="date"
+//             id="birthday"
+//             name="birthday"
+//             value={userData.birthday}
+//             onChange={handleInputChange}
+//           />
+//           <button onClick={handleUpdateUser}>Save Changes</button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
 
-export default MyProfile;
+// export default MyProfile;
 
 
 
