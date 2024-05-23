@@ -1,49 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../../redux/auth/authOperations';
+import React from 'react';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import {
+  Menu,
+  Inputs,
+  Container,
+  Content,
+  RegisterBtn,
+} from './ConfirmedEmail.styled';
 
-function EmailConfirmation() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const [confirmationMessage, setConfirmationMessage] = useState('');
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email('Е-пошта неправильний').required('Е-пошта обов\'язкова'),
+  password: Yup.string().min(8, 'Пароль мусить бути більше 8 букв').required('Пароль обов\'язковий'),
+});
 
-  useEffect(() => {
-    const confirmEmail = async () => {
-      const params = new URLSearchParams(location.search);
-      const token = params.get('token');
-
-      if (!token) {
-        setConfirmationMessage('Invalid confirmation link');
-        return;
-      }
-
-      try {
-        const response = await axios.get(`/api/auth/refresh_token`);
-        setConfirmationMessage(response.data.message);
-
-        if (response.data.message === 'Email confirmed') {
-          const email = await axios.get(`/api/auth/refresh_token`);
-          dispatch(login({ email, token }));
-          navigate('/');
-        }
-      } catch (error) {
-        console.error('Помилка підтвердження електронної пошти:', error);
-        setConfirmationMessage('Verification error');
-      }
-    };
-
-    confirmEmail();
-  }, [dispatch, location.search, navigate]);
-
+const ConfirmedEmail = () => {
   return (
-    <div>
-      <h1>Email Confirmation</h1>
-      <p>{confirmationMessage || 'Підтвердження електронної пошти...'}</p>
-    </div>
+    <Container>
+        <Formik initialValues={{ email: '', password: '' }} validationSchema={LoginSchema}>
+          <Content>
+            <Menu>
+              <h1>Підтвердження реєстрації</h1>
+            </Menu>
+            <Inputs>
+              <p>Будь ласка перегляньте вашу електронну пошту, і підтвердіть вашу реєстрацію, після чого нажміть на "Перейти далі"</p>
+              <RegisterBtn to="/auth/login" underline="none">Перейти далі</RegisterBtn>
+            </Inputs>
+          </Content>
+        </Formik>
+    </Container>
   );
-}
+};
 
-export default EmailConfirmation;
+export default ConfirmedEmail;

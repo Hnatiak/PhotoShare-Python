@@ -3,7 +3,7 @@ console.log(selectCurrentUser)
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectAuthError = state => state.auth.error;
 export const selectIsLoading = state => state.auth.loading;
-
+export const accessToken = state => state.auth.access_token;
 
 // export const setName = state => state.auth.user.username;
 // export const setAvatar = state => state.auth.user.avatar;
