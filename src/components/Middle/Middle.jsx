@@ -41,7 +41,7 @@ const Middle = () => {
   const onSubmit = (data) => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('photo', selectedFile);
+      formData.append('file', selectedFile);
       formData.append('description', data.description);
       formData.append('tags', data.tags);
 
@@ -62,6 +62,7 @@ const Middle = () => {
 
   return (
     <div>
+      <Photos photos={photos} />
       {isLoggedIn && (
         <DivContent>
           <AddPhotoBtn type="button" onClick={openModal}>Add Photo</AddPhotoBtn>
@@ -89,7 +90,6 @@ const Middle = () => {
           <h1>Для того щоб почати тут щось робити, будь ласка <A to="/auth/register">зареєструйся</A> спочатку</h1>
         </Div>
       )}
-      <Photos photos={photos} />
     </div>
   );
 };

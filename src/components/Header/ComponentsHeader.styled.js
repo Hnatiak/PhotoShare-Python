@@ -59,7 +59,6 @@ export const MenuItem = styled.li`
 `;
 
 export const A = styled(NavLink)`
-  padding-bottom: 10px;
   font-size: 14px;
   font-weight: 700;
   color: #9ac43c;

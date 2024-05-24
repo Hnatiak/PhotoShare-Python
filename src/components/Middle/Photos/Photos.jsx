@@ -1,5 +1,5 @@
 import React from 'react';
-import { PhotoItem, PhotoList } from './Photos.styled';
+import { PhotoItem, PhotoList, Image } from './Photos.styled';
 
 const Photos = ({ photos }) => {
   return (

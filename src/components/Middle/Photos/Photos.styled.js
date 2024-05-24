@@ -5,6 +5,7 @@ export const PhotoList = styled.ul`
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  padding: 25px;
 `;
 
 export const PhotoItem = styled.li`
@@ -14,7 +15,7 @@ export const PhotoItem = styled.li`
   overflow: hidden;
 
   img {
-    width: 100%;
+    width: 350px;
     height: auto;
   }
 

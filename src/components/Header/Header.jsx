@@ -27,12 +27,13 @@ const Header = () => {
       <Logo />
         <Menu>
           <MenuDiv>
+            <A to="/">Головна</A>
             {!isLoggedInUser &&
             <Ab to="/auth/register">
               {!isLoggedInUser && <FontAwesomeIcon icon={faUser} style={{ width: 20, height: 20, padding: '0px' }} />}
             </Ab> 
             }
-            {isLoggedInUser && <div><A style={{ marginRight: '15px' }} to="/">Головна</A><A to="/user/updateUser">{user.username}</A></div>
+            {isLoggedInUser && <A to="/user/updateUser">{user.username}</A>
           }
           {role === 'admin' && (<A style={{ padding: '0px', margin: '0px' }} to="/users/fetchUsers">Адмін панель</A>)}
           </MenuDiv>

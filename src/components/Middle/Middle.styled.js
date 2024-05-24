@@ -19,7 +19,6 @@ export const Div = styled.div`
 export const DivContent = styled.div`
   margin: 15px;
   display: flex;
-  height: 60vh;
   align-items: flex-end;
   justify-content: flex-start;
   flex-direction: row-reverse;
