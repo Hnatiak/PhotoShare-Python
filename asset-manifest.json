@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/PhotoShare-Python/static/css/main.9dae34ce.css",
-    "main.js": "/PhotoShare-Python/static/js/main.42bcfd76.js",
+    "main.js": "/PhotoShare-Python/static/js/main.b79e50bd.js",
     "static/js/726.902b893a.chunk.js": "/PhotoShare-Python/static/js/726.902b893a.chunk.js",
     "static/js/805.55a663db.chunk.js": "/PhotoShare-Python/static/js/805.55a663db.chunk.js",
-    "static/js/214.d7ce190f.chunk.js": "/PhotoShare-Python/static/js/214.d7ce190f.chunk.js",
+    "static/js/214.3bb0dbf8.chunk.js": "/PhotoShare-Python/static/js/214.3bb0dbf8.chunk.js",
     "static/js/670.f9748e64.chunk.js": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js",
     "static/js/412.bdb86991.chunk.js": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js",
     "static/js/603.c376ee80.chunk.js": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js",
@@ -13,10 +13,10 @@
     "static/media/phone.webp": "/PhotoShare-Python/static/media/phone.5600f066e29513cf3557.webp",
     "index.html": "/PhotoShare-Python/index.html",
     "main.9dae34ce.css.map": "/PhotoShare-Python/static/css/main.9dae34ce.css.map",
-    "main.42bcfd76.js.map": "/PhotoShare-Python/static/js/main.42bcfd76.js.map",
+    "main.b79e50bd.js.map": "/PhotoShare-Python/static/js/main.b79e50bd.js.map",
     "726.902b893a.chunk.js.map": "/PhotoShare-Python/static/js/726.902b893a.chunk.js.map",
     "805.55a663db.chunk.js.map": "/PhotoShare-Python/static/js/805.55a663db.chunk.js.map",
-    "214.d7ce190f.chunk.js.map": "/PhotoShare-Python/static/js/214.d7ce190f.chunk.js.map",
+    "214.3bb0dbf8.chunk.js.map": "/PhotoShare-Python/static/js/214.3bb0dbf8.chunk.js.map",
     "670.f9748e64.chunk.js.map": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js.map",
     "412.bdb86991.chunk.js.map": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js.map",
     "603.c376ee80.chunk.js.map": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js.map",
@@ -25,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.9dae34ce.css",
-    "static/js/main.42bcfd76.js"
+    "static/js/main.b79e50bd.js"
   ]
 }
