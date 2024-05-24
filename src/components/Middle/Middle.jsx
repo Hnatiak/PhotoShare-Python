@@ -41,7 +41,7 @@ const Middle = () => {
   const onSubmit = (data) => {
     if (selectedFile) {
       const formData = new FormData();
-      formData.append('photo', selectedFile);
+      formData.append('file', selectedFile);
       formData.append('description', data.description);
       formData.append('tags', data.tags);
 
