@@ -14,6 +14,7 @@ import Logo from '../Logo/Logo';
 
 const Header = () => {
   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
+  // eslint-disable-next-line
   const [userData, setUserData] = useState(() => {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
     return storedUserData || {
