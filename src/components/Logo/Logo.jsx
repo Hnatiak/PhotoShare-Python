@@ -1,12 +1,11 @@
 import React from 'react';
-// import logo from '../../images/logo.webp';
-import { LogoImg, LogoNav, LogoText } from './Logo.styled';
+import logo from '../../images/phone.webp';
+import { LogoImg, LogoNav } from './Logo.styled';
 
 const Logo = () => {
   return (
     <LogoNav to="/">
-      <LogoImg src="...addEventListener('type', listener, options)" alt="logo" />
-      <LogoText>Лата - надійний партнер у поліграфічній галузі</LogoText>
+      <LogoImg src={logo} alt="logo" />
     </LogoNav>
   );
 };

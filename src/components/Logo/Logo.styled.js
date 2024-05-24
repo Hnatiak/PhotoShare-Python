@@ -11,9 +11,7 @@ export const LogoNav = styled(NavLink)`
 `;
 
 export const LogoImg = styled.img`
-  margin-bottom: 10px;
-  max-width: 219px;
-  max-height: 94px;
+  max-height: 59px;
   @media screen and (max-width: 480px) {
     max-width: 100%;
   }

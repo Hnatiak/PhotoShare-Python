@@ -3,29 +3,6 @@ import axios from 'axios';
 import { store } from '../../redux/store';
 
 
-// export const updateUserAvatar = createAsyncThunk(
-//   'user/updateUser',
-//   async (formData, thunkAPI) => {
-//     try {
-//       const state = thunkAPI.getState();
-//       const token = state.auth.access_token; // Предполагаємо, що у вашому стейті є токен авторизації
-
-//       const response = await axios.put('/api/users/avatar', formData, {
-//         headers: {
-//           'Authorization': `Bearer ${token}`,
-//           'Content-Type': 'multipart/form-data'
-//         }
-//       });
-
-//       return response.data;
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );
-
-
-
 export const updateUserAvatar = createAsyncThunk(
   'user/updateUserAvatar',
   async ({ userId, avatarFile }, thunkAPI) => {
@@ -91,18 +68,26 @@ export const fetchUsers = createAsyncThunk(
 );
 
 
-// export const updateUser = createAsyncThunk(
-//   'user/updateUser',
-//   async ({ userId, userData }, { rejectWithValue }) => {
-//     try {
-//       const response = await axios.put(`/api/users`, userData, {
-//         headers: {
-//           'Authorization': `Bearer ${localStorage.getItem('token')}`
-//         }
-//       });
-//       return response.data;
-//     } catch (error) {
-//       return rejectWithValue(error.response?.data || error.message);
-//     }
-//   }
-// );
+
+
+
+export const updateUserRole = createAsyncThunk(
+  'user/updateUserRole',
+  async ({ userId, newRole }, { rejectWithValue }) => {
+    try {
+      const state = store.getState();
+      const token = state.auth.access_token;
+
+      const response = await axios.put(`/api/users/role/${userId}`, { role: newRole }, {
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.response?.data || error.message);
+    }
+  }
+);

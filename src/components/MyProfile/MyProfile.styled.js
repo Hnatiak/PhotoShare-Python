@@ -32,6 +32,8 @@ export const LogOut = styled.button`
 export const Img = styled.img`
   border-radius: 50%;
   width: 60%;
+  padding: 5px;
+  border: 3px solid #9AC43C;
 `;
 
 export const Menu = styled.div`
@@ -120,6 +122,14 @@ export const EditPhoto = styled.label`
     }
 `;
 
+
+export const DivStyles = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60vh;
+  justify-content: center;
+`;
 
 
 

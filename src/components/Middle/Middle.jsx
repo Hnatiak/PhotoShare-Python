@@ -71,9 +71,7 @@ const Middle = () => {
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <CloseButtonWrapper>
                     <h2 style={{ margin: '0px' }}>Add Post</h2>
-                    {/* <CloseButtonWrapper> */}
                     <CloseButton type="button" onClick={closeModal}>✖</CloseButton>
-                    {/* </CloseButtonWrapper> */}
                 </CloseButtonWrapper>
                 {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
                 <FileInput type="file" id='file' name='photo' onChange={onFileChange} />

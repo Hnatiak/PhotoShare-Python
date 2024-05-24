@@ -10,6 +10,7 @@ export const HeaderWrapper = styled.header`
   top: 0;
   position: sticky;
   z-index: 3;
+  border: 1px solid #9AC43C;
   @media screen and (max-width: 780px) {
     padding: 7px 20px 10px 20px;
     align-items: center;
@@ -42,7 +43,7 @@ export const Menu = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: center;
 `;
 
 export const Question = styled.div`
@@ -114,7 +115,6 @@ export const AboutA = styled(Link)`
 export const MenuDiv = styled.div`
   display: flex;
   gap: 15px;
-  margin-top: 30px;
   color: #9AC43C;
   align-items: center;
 `;

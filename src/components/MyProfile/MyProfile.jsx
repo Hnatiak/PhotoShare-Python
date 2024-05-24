@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../../redux/users/userOperations';
 import { logout } from '../../redux/auth/authOperations';
 import { toast } from 'react-toastify';
-import { Img, StyledLink, LogOut, EditBtn, Div, DivPhoto, DivEdit, EditPhoto, FileInput, LastDiv } from './MyProfile.styled';
+import { Img, StyledLink, LogOut, EditBtn, Div, DivPhoto, DivEdit, EditPhoto, FileInput, LastDiv, DivStyles } from './MyProfile.styled';
 import { updateUserAvatar } from '../../redux/users/userOperations';
 
 const MyProfile = ({ stockAvatar, onClose }) => {
@@ -103,47 +103,47 @@ const MyProfile = ({ stockAvatar, onClose }) => {
       {user && (
         <div>
           {isLoggedInUser && (
-            <>
-            <Div>
-              <DivPhoto>
-                <Img src={user.avatar} alt="" />
-                <FileInput type="file" id="file" onChange={handleFileChange} />
-                <EditPhoto htmlFor="file">Edit Photo</EditPhoto>
-                <button onClick={handleUpdateAvatar}>Update Avatar</button>
-              </DivPhoto>
-              <DivEdit>
-                <label htmlFor="username">Ваше ім'я</label>
-                {editMode ? (
-                  <input type="text" id="username" name="username" value={userData.username} onChange={handleInputChange} />
-                ) : (
-                  <p>{userData.username} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-                )}
+            <DivStyles>
+              <Div>
+                <DivPhoto>
+                  <Img src={user.avatar} alt="" />
+                  <FileInput type="file" id="file" onChange={handleFileChange} />
+                  <EditPhoto htmlFor="file">Edit Photo</EditPhoto>
+                  <button onClick={handleUpdateAvatar}>Update Avatar</button>
+                </DivPhoto>
+                <DivEdit>
+                  <label htmlFor="username">Ваше ім'я</label>
+                  {editMode ? (
+                    <input type="text" id="username" name="username" value={userData.username} onChange={handleInputChange} />
+                  ) : (
+                    <p>{userData.username} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
+                  )}
 
-                <label htmlFor="email">Ваша емейл:</label><p>{user.email}</p>
-                <label htmlFor="role">Ваша роль:</label><p>{user.role}</p>
+                  <label htmlFor="email">Ваша емейл:</label><p>{user.email}</p>
+                  <label htmlFor="role">Ваша роль:</label><p>{user.role}</p>
 
-                <label htmlFor="phone">Ваш номер телефону:</label>
-                {editMode ? (
-                  <input type="tel" id="phone" name="phone" value={userData.phone} onChange={handleInputChange} />
-                ) : (
-                  <p>{userData.phone} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-                )}
-                <label htmlFor="birthday">Ваша дата дня народження:</label>
-                {editMode ? (
-                  <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleInputChange} />
-                ) : (
-                  <p>{userData.birthday} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-                )}
-                {editMode && (
-                  <EditBtn type="submit" onClick={handleUpdateUser}>Зберегти</EditBtn>
-                )}
-              </DivEdit>
-            </Div>
-            <LastDiv>
-              <LogOut onClick={handleLogout} style={{ marginRight: '15px' }}>Вийти</LogOut>
-              <StyledLink to="/">Головна</StyledLink>
-            </LastDiv>
-            </>
+                  <label htmlFor="phone">Ваш номер телефону:</label>
+                  {editMode ? (
+                    <input type="tel" id="phone" name="phone" value={userData.phone} onChange={handleInputChange} />
+                  ) : (
+                    <p>{userData.phone} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
+                  )}
+                  <label htmlFor="birthday">Ваша дата дня народження:</label>
+                  {editMode ? (
+                    <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleInputChange} />
+                  ) : (
+                    <p>{userData.birthday} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
+                  )}
+                  {editMode && (
+                    <EditBtn type="submit" onClick={handleUpdateUser}>Зберегти</EditBtn>
+                  )}
+                </DivEdit>
+              </Div>
+              <LastDiv>
+                <LogOut onClick={handleLogout} style={{ marginRight: '15px' }}>Вийти</LogOut>
+                <StyledLink to="/">Головна</StyledLink>
+              </LastDiv>
+            </DivStyles>
           )}
           {!isLoggedInUser && (
             <div>
