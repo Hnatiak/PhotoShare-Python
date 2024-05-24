@@ -1,0 +1,1 @@
+export const selectPhotos = (state) => state.photo.photos;

@@ -5,6 +5,7 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 
 import { authReducer } from './auth/authSlice';
 import { userReducer } from './users/userSlice';
+import { photoReducer } from './photos/photoSlice';
 
 const persistConfig = {
   key: 'root',
@@ -17,6 +18,7 @@ const persistedReducer = persistReducer(
   combineReducers({
     auth: authReducer,
     user: userReducer,
+    photo: photoReducer,
   })
 );
 
