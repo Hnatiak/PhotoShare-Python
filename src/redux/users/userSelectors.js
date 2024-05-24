@@ -5,6 +5,6 @@
 // export const setRole = state => state.user.user.role;
 // export const setPhone = state => state.user.user.phone;
 // export const setBirthday = state => state.user.user.birthday;
-export const selectUser = state => state.user.user;
+export const selectUser = state => state.user;
 
 export const selectUserAuth = state => state.auth.user;

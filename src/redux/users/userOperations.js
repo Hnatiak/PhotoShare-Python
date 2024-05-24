@@ -71,6 +71,29 @@ export const fetchUsers = createAsyncThunk(
 
 
 
+// export const updateUserRole = createAsyncThunk(
+//   'user/updateUserRole',
+//   async ({ userId, newRole }, { rejectWithValue }) => {
+//     try {
+//       const state = store.getState();
+//       const token = state.auth.access_token;
+
+//       const response = await axios.put(`/api/users/role/${userId}`, { role: newRole }, {
+//         headers: {
+//           'Authorization': `Bearer ${token}`,
+//           'Content-Type': 'application/json'
+//         }
+//       });
+
+//       return response.data;
+//     } catch (error) {
+//       return rejectWithValue(error.response?.data || error.message);
+//     }
+//   }
+// );
+
+
+
 export const updateUserRole = createAsyncThunk(
   'user/updateUserRole',
   async ({ userId, newRole }, { rejectWithValue }) => {
@@ -78,16 +101,24 @@ export const updateUserRole = createAsyncThunk(
       const state = store.getState();
       const token = state.auth.access_token;
 
-      const response = await axios.put(`/api/users/role/${userId}`, { role: newRole }, {
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
+      const response = await axios.put(
+        `/api/users/role/${userId}`,
+        { role: newRole },
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
         }
-      });
+      );
 
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response?.data || error.message);
+      console.error('Error response:', error.response);
+      const errorMessage = error.response?.data?.detail
+        ? error.response.data.detail.toString()
+        : error.message;
+      return rejectWithValue(errorMessage);
     }
   }
 );

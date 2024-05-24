@@ -1,33 +1,131 @@
+// import React, { useState, useEffect } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { updateUser } from '../../redux/users/userOperations';
+// import { selectUserAuth } from '../../redux/users/userSelectors';
+
+// function MyProfile() {
+//   const dispatch = useDispatch();
+//   const user = useSelector(state => state.auth.user);
+
+//   // Отримання даних з локального сховища при першому рендері
+//   const [userData, setUserData] = useState(() => {
+//     const storedUserData = JSON.parse(localStorage.getItem('userData'));
+//     return storedUserData || {
+//       username: user.username,
+//       phone: user.phone,
+//       birthday: user.birthday,
+//       avatar: user.avatar,
+//     };
+//   });
+
+//   useEffect(() => {
+//     // Збереження даних в локальному сховищі при зміні userData
+//     localStorage.setItem('userData', JSON.stringify(userData));
+//   }, [userData]);
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setUserData(prevData => ({
+//       ...prevData,
+//       [name]: value
+//     }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     dispatch(updateUser({ userId: user.id, userData }));
+//   };
+
+//   return (
+//     <div>
+//       <h2>Update Profile</h2>
+//       <form onSubmit={handleSubmit}>
+//         <div>
+//           <label htmlFor="username">Username:</label>
+//           <input type="text" id="username" name="username" value={userData.username} onChange={handleChange} />
+//         </div>
+//         <div>
+//           <label htmlFor="phone">Phone:</label>
+//           <input type="text" id="phone" name="phone" value={userData.phone} onChange={handleChange} />
+//         </div>
+//         <div>
+//           <label htmlFor="birthday">Birthday:</label>
+//           <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleChange} />
+//         </div>
+//         <div>
+//           <label htmlFor="avatar">Avatar URL:</label>
+//           <input type="text" id="avatar" name="avatar" value={userData.avatar} onChange={handleChange} />
+//         </div>
+//         <button type="submit">Update</button>
+//       </form>
+//     </div>
+//   );
+// }
+
+// export default MyProfile;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/auth/authOperations';
 import { updateUser, updateUserAvatar } from '../../redux/users/userOperations';
-import { selectUser } from '../../redux/users/userSelectors';
+import { selectUserAuth } from '../../redux/users/userSelectors';
 import { toast } from 'react-toastify';
 import { Img, StyledLink, LogOut, EditBtn, Div, DivPhoto, DivEdit, EditPhoto, FileInput, LastDiv, DivStyles } from './MyProfile.styled';
 
 const MyProfile = () => {
   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUserAuth);
+  console.log(user)
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [avatarFile, setAvatarFile] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [userData, setUserData] = useState({
-    username: user?.username || '',
-    phone: user?.phone || '',
-    birthday: user?.birthday || '',
+  const [userData, setUserData] = useState(() => {
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    return storedUserData || {
+      username: user.username,
+      phone: user.phone,
+      birthday: user.birthday,
+      avatar: user.avatar,
+    };
   });
 
+  // useEffect(() => {
+  //   setUserData({
+  //     username: user?.username || '',
+  //     phone: user?.phone || '',
+  //     birthday: user?.birthday || '',
+  //   });
+  // }, [user]);
+
   useEffect(() => {
-    setUserData({
-      username: user?.username || '',
-      phone: user?.phone || '',
-      birthday: user?.birthday || '',
-    });
-  }, [user]);
+    // Збереження даних в локальному сховищі при зміні userData
+    localStorage.setItem('userData', JSON.stringify(userData));
+  }, [userData]);
 
   const handleFileChange = (event) => {
     setAvatarFile(event.target.files[0]);
@@ -42,11 +140,19 @@ const MyProfile = () => {
     }
   };
 
-  const handleInputChange = (e) => {
+  // const handleInputChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setUserData(prevUserData => ({
+  //     ...prevUserData,
+  //     [name]: value,
+  //   }));
+  // };
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    setUserData(prevUserData => ({
-      ...prevUserData,
-      [name]: value,
+    setUserData(prevData => ({
+      ...prevData,
+      [name]: value
     }));
   };
 
@@ -86,7 +192,7 @@ const MyProfile = () => {
             <DivEdit>
               <label htmlFor="username">Ваше ім'я</label>
               {editMode ? (
-                <input type="text" id="username" name="username" value={userData.username} onChange={handleInputChange} />
+                <input type="text" id="username" name="username" value={userData.username} onChange={handleChange} />
               ) : (
                 <p>{userData.username} <EditBtn onClick={() => setEditMode(true)}>Редагувати</EditBtn></p>
               )}
@@ -96,13 +202,13 @@ const MyProfile = () => {
 
               <label htmlFor="phone">Ваш номер телефону:</label>
               {editMode ? (
-                <input type="tel" id="phone" name="phone" value={userData.phone} onChange={handleInputChange} />
+                <input type="tel" id="phone" name="phone" value={userData.phone} onChange={handleChange} />
               ) : (
                 <p>{userData.phone} <EditBtn onClick={() => setEditMode(true)}>Редагувати</EditBtn></p>
               )}
               <label htmlFor="birthday">Ваша дата народження:</label>
               {editMode ? (
-                <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleInputChange} />
+                <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleChange} />
               ) : (
                 <p>{userData.birthday} <EditBtn onClick={() => setEditMode(true)}>Редагувати</EditBtn></p>
               )}
