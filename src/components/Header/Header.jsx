@@ -55,10 +55,11 @@ const Header = () => {
     setIsModalTelephoneOpen(false);
   };
 
-  // const username = useSelector(setName);
-  const user = useSelector(state => state.user.user);
-  console.log(user)
-  const username = useSelector((state) => state.auth.user.username);
+  const username = useSelector(setName);
+  // const user = useSelector(state => state.user.user);
+  const user = useSelector(state => state.auth.user);
+  // console.log(user)
+  // const username = useSelector((state) => state.auth.user.username);
   console.log(username)
   const role = useSelector((state) => state.auth.user.role);
 
@@ -105,7 +106,7 @@ const Header = () => {
               {!isLoggedInUser && <FontAwesomeIcon icon={faUser} style={{ width: 20, height: 20, padding: '0px' }} />}
             </Ab> 
             }
-            {isLoggedInUser && <A style={{ padding: '0px', margin: '0px' }} to="/user/updateUser">{user.username}</A>
+            {isLoggedInUser && <div><A style={{ marginRight: '15px' }} to="/">Головна</A><A to="/user/updateUser">{user.username}</A></div>
           }
           {role === 'admin' && (<A style={{ padding: '0px', margin: '0px' }} to="/users/fetchUsers">Адмін панель</A>)}
           </MenuDiv>

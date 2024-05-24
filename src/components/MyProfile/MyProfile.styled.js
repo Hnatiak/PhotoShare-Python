@@ -31,6 +31,7 @@ export const LogOut = styled.button`
 
 export const Img = styled.img`
   border-radius: 50%;
+  width: 60%;
 `;
 
 export const Menu = styled.div`
@@ -67,34 +68,99 @@ export const A = styled(NavLink)`
 
 export const Ab = styled(NavLink)``;
 
-export const MenuLinkActive = styled(Link)(({ selected }) => ({
-  textTransform: 'uppercase',
-  fontSize: '13px',
-  fontWeight: selected ? '700' : '400',
-  color: selected ? '#9AC43C' : '#111',
-  textDecoration: 'none',
-  '&:hover': {
-    color: '#9AC43C',
-  },
-}));
-
-export const AboutUl = styled.ul`
-  position: absolute;
-  z-index: 3;
-  display: block;
-  color: white;
-  min-width: 180px;
-  padding: 0;
-  margin-top: 2px;
-  background: #222;
-  border: none;
-  opacity: inherit;
-  @media screen and (max-width: 780px) {
-    right: 0;
-    left: auto;
-    margin-right: 10px;
-  }
+export const Div = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 45px;
 `;
+
+export const LastDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+`;
+
+export const EditBtn = styled.button`
+    font-style: normal;
+    font-weight: var(--fontWeight500);
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    width: 100%;
+    height: 29px;
+    margin-top: 10px;
+    background: rgb(154, 196, 60);
+    border-radius: 15px;
+    @media screen and (max-width: 768px) {
+        width: 287px;
+    }
+`;
+
+export const EditPhoto = styled.label`
+    font-style: normal;
+    font-weight: var(--fontWeight500);
+    font-size: 16px;
+    line-height: 21px;
+    text-align: center;
+    letter-spacing: -0.02em;
+    width: 100%;
+    height: 29px;
+    margin-top: 10px;
+    background: rgb(154, 196, 60);
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    @media screen and (max-width: 768px) {
+        width: 287px;
+    }
+`;
+
+
+
+
+
+
+
+export const FileInputWrapper = styled.label`
+  display: inline-block;
+  margin-top: 10px;
+  width: 24px;
+  color: black;
+  height: 24px;
+  border-radius: 15px;
+  background: rgb(154, 196, 60);
+  font-size: 18px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const FileInput = styled.input`
+  display: none;
+`;
+
+
+
+
+export const DivPhoto = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 15%;
+`;
+
+export const DivEdit = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 
 export const AboutA = styled(Link)`
   text-transform: uppercase;
