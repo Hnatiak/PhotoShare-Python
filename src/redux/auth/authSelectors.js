@@ -1,5 +1,4 @@
 export const selectCurrentUser = state => state.auth.user;
-console.log(selectCurrentUser)
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 export const selectAuthError = state => state.auth.error;
 export const selectIsLoading = state => state.auth.loading;

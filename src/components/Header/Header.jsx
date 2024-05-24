@@ -8,18 +8,14 @@ import {
   MenuDiv
 } from './ComponentsHeader.styled';
 import { useSelector } from 'react-redux';
-import { setName } from '../../redux/users/userSelectors';
+// import { setName } from '../../redux/users/userSelectors';
 import Logo from '../Logo/Logo';
 
 const Header = () => {
   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
 
-  const username = useSelector(setName);
-  // const user = useSelector(state => state.user.user);
-  const user = useSelector(state => state.auth.user);
-  // console.log(user)
-  // const username = useSelector((state) => state.auth.user.username);
-  console.log(username)
+  // const username = useSelector(state => state.user.user.username);
+  const user = useSelector(state => state.auth.user.username);
   const role = useSelector((state) => state.auth.user.role);
 
   return (
@@ -33,7 +29,7 @@ const Header = () => {
               {!isLoggedInUser && <FontAwesomeIcon icon={faUser} style={{ width: 20, height: 20, padding: '0px' }} />}
             </Ab> 
             }
-            {isLoggedInUser && <A to="/user/updateUser">{user.username}</A>
+            {isLoggedInUser && <A to="/user/updateUser">{user}</A>
           }
           {role === 'admin' && (<A style={{ padding: '0px', margin: '0px' }} to="/users/fetchUsers">Адмін панель</A>)}
           </MenuDiv>

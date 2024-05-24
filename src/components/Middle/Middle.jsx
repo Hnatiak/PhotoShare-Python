@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createPhoto } from '../../redux/photos/photoOperations';
-import { selectPhotos } from '../../redux/photos/photoSelectors';
+// import { selectPhotos } from '../../redux/photos/photoSelectors';
 import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview, CloseButtonWrapper, CloseButton } from './Middle.styled';
 import Photos from './Photos/Photos';
 import { toast } from 'react-toastify';
@@ -15,7 +15,7 @@ const Middle = () => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
-  const photos = useSelector(selectPhotos);
+  // const photos = useSelector(selectPhotos);
 
   const openModal = () => {
     setModalIsOpen(true);
@@ -49,6 +49,7 @@ const Middle = () => {
         .then(() => {
           toast.success('Ваш пост успішно добавлено');
           closeModal();
+          window.location.reload()
         })
         .catch((error) => {
           toast.error(`Щось пішло не так, спробуйте ще раз: ${error.message}`);
@@ -62,14 +63,14 @@ const Middle = () => {
 
   return (
     <div>
-      <Photos photos={photos} />
+      {isLoggedIn && (<Photos />)}
       {isLoggedIn && (
         <DivContent>
           <AddPhotoBtn type="button" onClick={openModal}>Add Photo</AddPhotoBtn>
 
           <ModalComponent isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Add Photo Modal">
             <ModalContent>
-              <Form onSubmit={handleSubmit(onSubmit)}>
+              <Form onSubmit={handleSubmit(onSubmit)} method="post">
                 <CloseButtonWrapper>
                     <h2 style={{ margin: '0px' }}>Add Post</h2>
                     <CloseButton type="button" onClick={closeModal}>✖</CloseButton>
