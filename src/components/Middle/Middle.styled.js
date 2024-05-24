@@ -152,3 +152,22 @@ export const EditPhoto = styled.label`
 export const ImagePreview = styled.img `
     width: 60%;
 `
+
+
+export const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+`;
+
+export const CloseButton = styled.button`
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: #333;
+  &:hover {
+    color: #000;
+  }
+`;

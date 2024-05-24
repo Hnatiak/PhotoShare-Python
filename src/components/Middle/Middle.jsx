@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createPhoto } from '../../redux/photos/photoOperations';
 import { selectPhotos } from '../../redux/photos/photoSelectors';
-import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview } from './Middle.styled';
+import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview, CloseButtonWrapper, CloseButton } from './Middle.styled';
 import Photos from './Photos/Photos';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
@@ -69,7 +69,12 @@ const Middle = () => {
           <ModalComponent isOpen={modalIsOpen} onRequestClose={closeModal} contentLabel="Add Photo Modal">
             <ModalContent>
               <Form onSubmit={handleSubmit(onSubmit)}>
-                <h2>Add Post</h2>
+                <CloseButtonWrapper>
+                    <h2 style={{ margin: '0px' }}>Add Post</h2>
+                    {/* <CloseButtonWrapper> */}
+                    <CloseButton type="button" onClick={closeModal}>✖</CloseButton>
+                    {/* </CloseButtonWrapper> */}
+                </CloseButtonWrapper>
                 {previewUrl && <ImagePreview src={previewUrl} alt="Preview" />}
                 <FileInput type="file" id='file' name='photo' onChange={onFileChange} />
                 <EditPhoto htmlFor="file">Add Photo</EditPhoto>
