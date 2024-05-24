@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUser, fetchUsers } from './userOperations'
+import { updateUser, fetchUsers, updateUserAvatar } from './userOperations'
 
 const initialState = {
-    user: null,
+    user: {
+      username: null,
+      email: null,
+      birthday: null,
+      avatar: null,
+      phone: null,
+    },
     isLoading: false,
     error: null,
   };
   
   const userSlice = createSlice({
     name: 'user',
-    initialState,
+    initialState:initialState,
     reducers: {
       setUser(state, action) {
-        state.user = action.payload;
+        state.user = action.payload;        
       },
       clearUser(state) {
         state.user = null;
@@ -25,10 +31,18 @@ const initialState = {
           state.error = null;
         })
         .addCase(updateUser.fulfilled, (state, action) => {
-          state.isLoading = false;
-          state.user = action.payload;
+          state.isLoading = false;          
+          state.user = action.payload;      
         })
         .addCase(updateUser.rejected, (state, action) => {
+          state.isLoading = false;
+          state.error = action.payload;
+        })
+        .addCase(updateUserAvatar.fulfilled, (state, action) => {
+          state.isLoading = false;          
+          state.user = action.payload;      
+        })
+        .addCase(updateUserAvatar.rejected, (state, action) => {
           state.isLoading = false;
           state.error = action.payload;
         })
