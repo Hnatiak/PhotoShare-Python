@@ -1,91 +1,3 @@
-// import React, { useState, useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { updateUser } from '../../redux/users/userOperations';
-// import { selectUserAuth } from '../../redux/users/userSelectors';
-
-// function MyProfile() {
-//   const dispatch = useDispatch();
-//   const user = useSelector(state => state.auth.user);
-
-//   // Отримання даних з локального сховища при першому рендері
-//   const [userData, setUserData] = useState(() => {
-//     const storedUserData = JSON.parse(localStorage.getItem('userData'));
-//     return storedUserData || {
-//       username: user.username,
-//       phone: user.phone,
-//       birthday: user.birthday,
-//       avatar: user.avatar,
-//     };
-//   });
-
-//   useEffect(() => {
-//     // Збереження даних в локальному сховищі при зміні userData
-//     localStorage.setItem('userData', JSON.stringify(userData));
-//   }, [userData]);
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setUserData(prevData => ({
-//       ...prevData,
-//       [name]: value
-//     }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     dispatch(updateUser({ userId: user.id, userData }));
-//   };
-
-//   return (
-//     <div>
-//       <h2>Update Profile</h2>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label htmlFor="username">Username:</label>
-//           <input type="text" id="username" name="username" value={userData.username} onChange={handleChange} />
-//         </div>
-//         <div>
-//           <label htmlFor="phone">Phone:</label>
-//           <input type="text" id="phone" name="phone" value={userData.phone} onChange={handleChange} />
-//         </div>
-//         <div>
-//           <label htmlFor="birthday">Birthday:</label>
-//           <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleChange} />
-//         </div>
-//         <div>
-//           <label htmlFor="avatar">Avatar URL:</label>
-//           <input type="text" id="avatar" name="avatar" value={userData.avatar} onChange={handleChange} />
-//         </div>
-//         <button type="submit">Update</button>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default MyProfile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -114,16 +26,7 @@ const MyProfile = () => {
     };
   });
 
-  // useEffect(() => {
-  //   setUserData({
-  //     username: user?.username || '',
-  //     phone: user?.phone || '',
-  //     birthday: user?.birthday || '',
-  //   });
-  // }, [user]);
-
   useEffect(() => {
-    // Збереження даних в локальному сховищі при зміні userData
     localStorage.setItem('userData', JSON.stringify(userData));
   }, [userData]);
 
@@ -133,21 +36,21 @@ const MyProfile = () => {
 
   const handleUpdateAvatar = async () => {
     if (avatarFile) {
-      await dispatch(updateUserAvatar({ userId: user.id, avatarFile })).unwrap();
-      toast.success('Ваш аватар успішно оновлено');
+      try {
+        await dispatch(updateUserAvatar({ userId: user.id, avatarFile })).unwrap();
+        setUserData(prevData => ({
+          ...prevData,
+          avatar: URL.createObjectURL(avatarFile)
+        }));
+        toast.success('Ваш аватар успішно оновлено');
+      } catch (error) {
+        toast.error('Ви не вибрали файл або сталася помилка');
+      }
     } else {
       toast.error('Ви не вибрали файл або сталася помилка');
     }
   };
-
-  // const handleInputChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setUserData(prevUserData => ({
-  //     ...prevUserData,
-  //     [name]: value,
-  //   }));
-  // };
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData(prevData => ({
@@ -184,7 +87,7 @@ const MyProfile = () => {
         <DivStyles>
           <Div>
             <DivPhoto>
-              <Img src={user.avatar} alt="Avatar" />
+              <Img src={userData.avatar} alt="Avatar" name="avatar" />
               <FileInput type="file" id="file" onChange={handleFileChange} />
               <EditPhoto htmlFor="file">Змінити фото</EditPhoto>
               <button onClick={handleUpdateAvatar}>Оновити аватар</button>
@@ -233,199 +136,3 @@ const MyProfile = () => {
 };
 
 export default MyProfile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { updateUser } from '../../redux/users/userOperations';
-// import { logout } from '../../redux/auth/authOperations';
-// import { toast } from 'react-toastify';
-// import { Img, StyledLink, LogOut, EditBtn, Div, DivPhoto, DivEdit, EditPhoto, FileInput, LastDiv, DivStyles } from './MyProfile.styled';
-// import { updateUserAvatar } from '../../redux/users/userOperations';
-// import { selectUser } from '../../redux/users/userSelectors';
-
-// const MyProfile = ({ stockAvatar, onClose }) => {
-//   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
-//   const dispatch = useDispatch();
-//   const navigate = useNavigate();
-//   // eslint-disable-next-line
-//   const [selectedFile, setSelectedFile] = useState(null);
-//   // eslint-disable-next-line
-//   const [imageUrl, setImageUrl] = useState('');  
-//   // const user = useSelector(state => state.user.user);
-//   const user = useSelector(selectUser);
-
-//   // const user = useSelector(state => state.auth.user);
-
-
-//   const [avatarFile, setAvatarFile] = useState(null);
-
-//   const handleFileChange = (event) => {
-//     setAvatarFile(event.target.files[0]);
-//   };
-
-//   const handleUpdateAvatar = async () => {
-//     if (avatarFile) {
-//       await dispatch(updateUserAvatar({ userId: user.id, avatarFile })).unwrap();
-//       toast.success('Ваш профіль успішно оновлено');
-//     } else {
-//       toast.error('Ви не вибрали файл, або щось пішло не так');
-//     }
-//   };
-
-//   const [editMode, setEditMode] = useState(false);
-//   const [userData, setUserData] = useState({
-//     username: user?.username || '',
-//     phone: user?.phone || '',
-//     birthday: user?.birthday || '',
-//   });
-
-//   useEffect(() => {
-//     if (selectedFile) {
-//       const reader = new FileReader();
-
-//       reader.onload = event => {
-//         setImageUrl(event.target.result);
-//       };
-
-//       reader.readAsDataURL(selectedFile);
-//     }
-//   }, [selectedFile]);
-
-//   useEffect(() => {
-//     setUserData({
-//       username: user?.username || '',
-//       phone: user?.phone || '',
-//       birthday: user?.birthday || '',
-//     });
-//   }, [user]);
-
-//   const handleInputChange = (e) => {
-//     const { name, value } = e.target;
-//     setUserData(prevUserData => ({
-//       ...prevUserData,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleUpdateUser = async () => {
-//     try {
-//       await dispatch(updateUser({ userId: user.id, userData })).unwrap()
-//         .then(() => {
-//           setUserData(userData);
-//           setEditMode(false);
-//           toast.success('Ваш профіль успішно оновлено');
-//         });      
-//     } catch (error) {
-//       toast.error('Помилка під час оновлення профілю');
-//       setUserData(prevUserData => ({
-//         ...prevUserData,
-//         username: user?.username || '',
-//         phone: user?.phone || '',
-//         birthday: user?.birthday || '',
-//       }));
-//     }
-//   };
-
-//   const handleLogout = async () => {
-//     try {
-//       await dispatch(logout());
-//       navigate('/');
-//       toast.success('Ви успішно розлогінились');
-//     } catch (error) {
-//       console.log('Сталася помилка під час виходу:', error);
-//       toast.error('Під час розлогінення сталася помилка');
-//     }
-//   };
-
-//   return (
-//     <div>
-//       {user && (
-//         <div>
-//           {isLoggedInUser && (
-//             <DivStyles>
-//               <Div>
-//                 <DivPhoto>
-//                   <Img src={user.avatar} alt="" />
-//                   <FileInput type="file" id="file" onChange={handleFileChange} />
-//                   <EditPhoto htmlFor="file">Edit Photo</EditPhoto>
-//                   <button onClick={handleUpdateAvatar}>Update Avatar</button>
-//                 </DivPhoto>
-//                 <DivEdit>
-//                   <label htmlFor="username">Ваше ім'я</label>
-//                   {editMode ? (
-//                     <input type="text" id="username" name="username" value={userData.username} onChange={handleInputChange} />
-//                   ) : (
-//                     <p>{userData.username} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-//                   )}
-
-//                   <label htmlFor="email">Ваша емейл:</label><p>{user.email}</p>
-//                   <label htmlFor="role">Ваша роль:</label><p>{user.role}</p>
-
-//                   <label htmlFor="phone">Ваш номер телефону:</label>
-//                   {editMode ? (
-//                     <input type="tel" id="phone" name="phone" value={userData.phone} onChange={handleInputChange} />
-//                   ) : (
-//                     <p>{userData.phone} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-//                   )}
-//                   <label htmlFor="birthday">Ваша дата дня народження:</label>
-//                   {editMode ? (
-//                     <input type="date" id="birthday" name="birthday" value={userData.birthday} onChange={handleInputChange} />
-//                   ) : (
-//                     <p>{userData.birthday} <EditBtn onClick={() => setEditMode(true)}>Edit</EditBtn></p>
-//                   )}
-//                   {editMode && (
-//                     <EditBtn type="submit" onClick={handleUpdateUser}>Зберегти</EditBtn>
-//                   )}
-//                 </DivEdit>
-//               </Div>
-//               <LastDiv>
-//                 <LogOut onClick={handleLogout} style={{ marginRight: '15px' }}>Вийти</LogOut>
-//                 <StyledLink to="/">Головна</StyledLink>
-//               </LastDiv>
-//             </DivStyles>
-//           )}
-//           {!isLoggedInUser && (
-//             <div>
-//               <div>Please Register Here: <StyledLink to="/auth/register">Register</StyledLink></div>
-//             </div>
-//           )}
-//         </div>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default MyProfile;

@@ -31,9 +31,11 @@ export const LogOut = styled.button`
 
 export const Img = styled.img`
   border-radius: 50%;
-  width: 60%;
+  /* width: 60%; */
   padding: 5px;
   border: 3px solid #9AC43C;
+  width: 90px;
+  height: 90px;
 `;
 
 export const Menu = styled.div`

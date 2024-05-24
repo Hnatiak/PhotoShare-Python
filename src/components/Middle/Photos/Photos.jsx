@@ -64,14 +64,10 @@ const Photos = () => {
               </div>
             )}
             <DivButtons>
-              {role === 'admin' && (
-                <>
-                  <Delete name="delete" onClick={() => handleDelete(photo.id)}>Delete</Delete>
-                  <Edit name="edit" onClick={() => toggleEditing(photo.id)}>
-                    {editing[photo.id] ? 'Скасувати' : 'Редагувати'}
-                  </Edit>
-                </>
-              )}
+              {role === 'admin' && (<Delete name="delete" onClick={() => handleDelete(photo.id)}>Delete</Delete>)}
+              <Edit name="edit" onClick={() => toggleEditing(photo.id)}>
+                {editing[photo.id] ? 'Скасувати' : 'Редагувати'}
+              </Edit>
             </DivButtons>
           </Div>
         </PhotoItem>

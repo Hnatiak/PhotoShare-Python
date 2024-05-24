@@ -9,7 +9,6 @@ import {
   MenuDiv
 } from './ComponentsHeader.styled';
 import { useSelector } from 'react-redux';
-// import { setName } from '../../redux/users/userSelectors';
 import Logo from '../Logo/Logo';
 
 const Header = () => {
@@ -22,7 +21,6 @@ const Header = () => {
     };
   });
 
-  // const username = useSelector(state => state.user.user.username);
   const user = useSelector(state => state.auth.user.username);
   const role = useSelector((state) => state.auth.user.role);
 

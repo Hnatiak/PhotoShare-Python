@@ -9,7 +9,6 @@ export const HeaderWrapper = styled.header`
   background: #fff;
   top: 0;
   position: sticky;
-  z-index: 3;
   border: 1px solid #9AC43C;
   @media screen and (max-width: 780px) {
     padding: 7px 20px 10px 20px;
@@ -85,7 +84,6 @@ export const MenuLinkActive = styled(Link)(({ selected }) => ({
 
 export const AboutUl = styled.ul`
   position: absolute;
-  z-index: 3;
   display: block;
   color: white;
   min-width: 180px;
