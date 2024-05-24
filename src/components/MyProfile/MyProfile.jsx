@@ -6,17 +6,18 @@ import { logout } from '../../redux/auth/authOperations';
 import { toast } from 'react-toastify';
 import { Img, StyledLink, LogOut, EditBtn, Div, DivPhoto, DivEdit, EditPhoto, FileInput, LastDiv, DivStyles } from './MyProfile.styled';
 import { updateUserAvatar } from '../../redux/users/userOperations';
+import { selectUser } from '../../redux/users/userSelectors';
 
 const MyProfile = ({ stockAvatar, onClose }) => {
+  const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   // eslint-disable-next-line
   const [selectedFile, setSelectedFile] = useState(null);
   // eslint-disable-next-line
-  const [imageUrl, setImageUrl] = useState('');
-  const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
+  const [imageUrl, setImageUrl] = useState('');  
   // const user = useSelector(state => state.user.user);
-  const user = useSelector(state => state.auth.user);
+  const user = useSelector(selectUser);
 
   // const user = useSelector(state => state.auth.user);
 
@@ -29,7 +30,7 @@ const MyProfile = ({ stockAvatar, onClose }) => {
 
   const handleUpdateAvatar = async () => {
     if (avatarFile) {
-      dispatch(updateUserAvatar({ userId: user.id, avatarFile }));
+      await dispatch(updateUserAvatar({ userId: user.id, avatarFile })).unwrap();
       toast.success('Ваш профіль успішно оновлено');
     } else {
       toast.error('Ви не вибрали файл, або щось пішло не так');
@@ -73,9 +74,12 @@ const MyProfile = ({ stockAvatar, onClose }) => {
 
   const handleUpdateUser = async () => {
     try {
-      await dispatch(updateUser({ userId: user.id, userData })).unwrap();
-      setEditMode(false);
-      toast.success('Ваш профіль успішно оновлено');
+      await dispatch(updateUser({ userId: user.id, userData })).unwrap()
+        .then(() => {
+          setUserData(userData);
+          setEditMode(false);
+          toast.success('Ваш профіль успішно оновлено');
+        });      
     } catch (error) {
       toast.error('Помилка під час оновлення профілю');
       setUserData(prevUserData => ({
