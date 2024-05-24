@@ -66,3 +66,13 @@ export const Edit = styled.button`
     align-items: center;
   }
 `;
+
+
+export const Save = styled.button`
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+`;

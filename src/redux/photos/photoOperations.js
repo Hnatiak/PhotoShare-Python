@@ -36,3 +36,41 @@ export const deletePhoto = async (photoId, getState) => {
     }
   }
 };
+
+
+
+
+// export const updatePhoto = async (photoId, { description, tags }) => {
+//   try {
+//     const response = await axios.put(`/api/photos/${photoId}`, new URLSearchParams({
+//       photo_description: description,
+//       tags: tags.join(',')
+//     }), {
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//       },
+//     });
+//     return response.data;
+//   } catch (error) {
+//     throw new Error(error.response.data.detail);
+//   }
+// };
+
+
+export const updatePhoto = async (photoId, { description, tags }, token) => {
+  try {
+    const headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Authorization: `Bearer ${token}`,
+    };
+
+    const response = await axios.put(`/api/photos/${photoId}`, new URLSearchParams({
+      photo_description: description,
+      tags: tags.join(',')
+    }), { headers });
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.detail);
+  }
+};
