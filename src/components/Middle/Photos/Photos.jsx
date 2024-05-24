@@ -37,7 +37,6 @@ const Photos = () => {
               {role === 'admin' && (
                 <Delete name="delete" onClick={() => handleDelete(photo.id)}>Delete</Delete>
               )}
-              <Delete name="delete" onClick={() => handleDelete(photo.id)}>Delete</Delete>
               <Edit name="edit">Edit</Edit>
             </DivButtons>
           </Div>
