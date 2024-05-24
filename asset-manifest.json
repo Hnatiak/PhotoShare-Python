@@ -1,22 +1,23 @@
 {
   "files": {
     "main.css": "/PhotoShare-Python/static/css/main.9dae34ce.css",
-    "main.js": "/PhotoShare-Python/static/js/main.3241c816.js",
+    "main.js": "/PhotoShare-Python/static/js/main.244a91e4.js",
     "static/js/46.094c2bc2.chunk.js": "/PhotoShare-Python/static/js/46.094c2bc2.chunk.js",
     "static/js/805.55a663db.chunk.js": "/PhotoShare-Python/static/js/805.55a663db.chunk.js",
-    "static/js/53.7a6339d2.chunk.js": "/PhotoShare-Python/static/js/53.7a6339d2.chunk.js",
-    "static/js/434.b44d5904.chunk.js": "/PhotoShare-Python/static/js/434.b44d5904.chunk.js",
+    "static/js/53.400a0dc9.chunk.js": "/PhotoShare-Python/static/js/53.400a0dc9.chunk.js",
+    "static/js/670.f9748e64.chunk.js": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js",
     "static/js/412.bdb86991.chunk.js": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js",
     "static/js/603.c376ee80.chunk.js": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js",
     "static/js/150.558364c5.chunk.js": "/PhotoShare-Python/static/js/150.558364c5.chunk.js",
     "static/js/948.cc13e80a.chunk.js": "/PhotoShare-Python/static/js/948.cc13e80a.chunk.js",
+    "static/media/phone.webp": "/PhotoShare-Python/static/media/phone.5600f066e29513cf3557.webp",
     "index.html": "/PhotoShare-Python/index.html",
     "main.9dae34ce.css.map": "/PhotoShare-Python/static/css/main.9dae34ce.css.map",
-    "main.3241c816.js.map": "/PhotoShare-Python/static/js/main.3241c816.js.map",
+    "main.244a91e4.js.map": "/PhotoShare-Python/static/js/main.244a91e4.js.map",
     "46.094c2bc2.chunk.js.map": "/PhotoShare-Python/static/js/46.094c2bc2.chunk.js.map",
     "805.55a663db.chunk.js.map": "/PhotoShare-Python/static/js/805.55a663db.chunk.js.map",
-    "53.7a6339d2.chunk.js.map": "/PhotoShare-Python/static/js/53.7a6339d2.chunk.js.map",
-    "434.b44d5904.chunk.js.map": "/PhotoShare-Python/static/js/434.b44d5904.chunk.js.map",
+    "53.400a0dc9.chunk.js.map": "/PhotoShare-Python/static/js/53.400a0dc9.chunk.js.map",
+    "670.f9748e64.chunk.js.map": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js.map",
     "412.bdb86991.chunk.js.map": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js.map",
     "603.c376ee80.chunk.js.map": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js.map",
     "150.558364c5.chunk.js.map": "/PhotoShare-Python/static/js/150.558364c5.chunk.js.map",
@@ -24,6 +25,6 @@
   },
   "entrypoints": [
     "static/css/main.9dae34ce.css",
-    "static/js/main.3241c816.js"
+    "static/js/main.244a91e4.js"
   ]
 }
