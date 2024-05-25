@@ -1,30 +1,30 @@
 {
   "files": {
     "main.css": "/PhotoShare-Python/static/css/main.9dae34ce.css",
-    "main.js": "/PhotoShare-Python/static/js/main.318cd51a.js",
-    "static/js/726.08b8d3e4.chunk.js": "/PhotoShare-Python/static/js/726.08b8d3e4.chunk.js",
+    "main.js": "/PhotoShare-Python/static/js/main.8c3fe33c.js",
+    "static/js/726.e218564a.chunk.js": "/PhotoShare-Python/static/js/726.e218564a.chunk.js",
     "static/js/805.55a663db.chunk.js": "/PhotoShare-Python/static/js/805.55a663db.chunk.js",
-    "static/js/214.322c2dbf.chunk.js": "/PhotoShare-Python/static/js/214.322c2dbf.chunk.js",
-    "static/js/670.f9748e64.chunk.js": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js",
-    "static/js/412.bdb86991.chunk.js": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js",
+    "static/js/214.d4942d32.chunk.js": "/PhotoShare-Python/static/js/214.d4942d32.chunk.js",
+    "static/js/670.8d18337f.chunk.js": "/PhotoShare-Python/static/js/670.8d18337f.chunk.js",
+    "static/js/412.784ac591.chunk.js": "/PhotoShare-Python/static/js/412.784ac591.chunk.js",
     "static/js/603.c376ee80.chunk.js": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js",
     "static/js/150.558364c5.chunk.js": "/PhotoShare-Python/static/js/150.558364c5.chunk.js",
     "static/js/948.cc13e80a.chunk.js": "/PhotoShare-Python/static/js/948.cc13e80a.chunk.js",
     "static/media/phone.webp": "/PhotoShare-Python/static/media/phone.5600f066e29513cf3557.webp",
     "index.html": "/PhotoShare-Python/index.html",
     "main.9dae34ce.css.map": "/PhotoShare-Python/static/css/main.9dae34ce.css.map",
-    "main.318cd51a.js.map": "/PhotoShare-Python/static/js/main.318cd51a.js.map",
-    "726.08b8d3e4.chunk.js.map": "/PhotoShare-Python/static/js/726.08b8d3e4.chunk.js.map",
+    "main.8c3fe33c.js.map": "/PhotoShare-Python/static/js/main.8c3fe33c.js.map",
+    "726.e218564a.chunk.js.map": "/PhotoShare-Python/static/js/726.e218564a.chunk.js.map",
     "805.55a663db.chunk.js.map": "/PhotoShare-Python/static/js/805.55a663db.chunk.js.map",
-    "214.322c2dbf.chunk.js.map": "/PhotoShare-Python/static/js/214.322c2dbf.chunk.js.map",
-    "670.f9748e64.chunk.js.map": "/PhotoShare-Python/static/js/670.f9748e64.chunk.js.map",
-    "412.bdb86991.chunk.js.map": "/PhotoShare-Python/static/js/412.bdb86991.chunk.js.map",
+    "214.d4942d32.chunk.js.map": "/PhotoShare-Python/static/js/214.d4942d32.chunk.js.map",
+    "670.8d18337f.chunk.js.map": "/PhotoShare-Python/static/js/670.8d18337f.chunk.js.map",
+    "412.784ac591.chunk.js.map": "/PhotoShare-Python/static/js/412.784ac591.chunk.js.map",
     "603.c376ee80.chunk.js.map": "/PhotoShare-Python/static/js/603.c376ee80.chunk.js.map",
     "150.558364c5.chunk.js.map": "/PhotoShare-Python/static/js/150.558364c5.chunk.js.map",
     "948.cc13e80a.chunk.js.map": "/PhotoShare-Python/static/js/948.cc13e80a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9dae34ce.css",
-    "static/js/main.318cd51a.js"
+    "static/js/main.8c3fe33c.js"
   ]
 }
