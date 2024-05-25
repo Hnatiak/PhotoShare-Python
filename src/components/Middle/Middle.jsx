@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createPhoto } from '../../redux/photos/photoOperations';
+// eslint-disable-next-line
 import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview, DivSearch, CloseButtonWrapper, CloseButton } from './Middle.styled';
 import Photos from './Photos/Photos';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
+// eslint-disable-next-line
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// eslint-disable-next-line
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Middle = () => {
