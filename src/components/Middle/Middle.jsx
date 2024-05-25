@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { createPhoto } from '../../redux/photos/photoOperations';
-import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview, CloseButtonWrapper, CloseButton } from './Middle.styled';
+import { A, Div, DivContent, AddPhotoBtn, ModalContent, Form, Input, Textarea, SubmitButton, ModalComponent, FileInput, EditPhoto, ImagePreview, DivSearch, CloseButtonWrapper, CloseButton } from './Middle.styled';
 import Photos from './Photos/Photos';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Middle = () => {
   const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
@@ -61,6 +63,13 @@ const Middle = () => {
 
   return (
     <div>
+      {/* {isLoggedIn &&
+      <DivSearch>
+        <form action="">
+          <input type="text" placeholder="Шукати тут..." />
+          <button type="submit"><FontAwesomeIcon icon={faMagnifyingGlass} /></button>
+        </form>
+      </DivSearch>} */}
       {isLoggedIn && (<Photos />)}
       {isLoggedIn && (
         <DivContent>

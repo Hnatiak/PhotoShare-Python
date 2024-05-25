@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -10,18 +10,21 @@ import {
 } from './ComponentsHeader.styled';
 import { useSelector } from 'react-redux';
 import Logo from '../Logo/Logo';
+import { useAuth } from '../../hooks/useAuth';
 
 const Header = () => {
   const isLoggedInUser = useSelector(state => state.auth.isLoggedIn);
   // eslint-disable-next-line
-  const [userData, setUserData] = useState(() => {
-    const storedUserData = JSON.parse(localStorage.getItem('userData'));
-    return storedUserData || {
-      username: user.username,
-    };
-  });
+  // const [userData, setUserData] = useState(() => {
+  //   const storedUserData = JSON.parse(localStorage.getItem('userData'));
+  //   return storedUserData || {
+  //     username: user.username,
+  //   };
+  // });
 
-  const user = useSelector(state => state.auth.user.username);
+  const { user } = useAuth();
+
+  // const user = useSelector(state => state.auth.user.username);
   const role = useSelector((state) => state.auth.user.role);
 
   return (
@@ -35,7 +38,7 @@ const Header = () => {
               {!isLoggedInUser && <FontAwesomeIcon icon={faUser} style={{ width: 20, height: 20, padding: '0px' }} />}
             </Ab> 
             }
-            {isLoggedInUser && <A to="/user/updateUser">{userData.username}</A>
+            {isLoggedInUser && <A to="/user/updateUser">{user.username}</A>
           }
           {role === 'admin' && (<A style={{ padding: '0px', margin: '0px' }} to="/users/fetchUsers">Адмін панель</A>)}
           </MenuDiv>

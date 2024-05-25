@@ -70,14 +70,13 @@ export const fetchUsers = createAsyncThunk(
 
 export const updateUserRole = createAsyncThunk(
   'user/updateUserRole',
-  async ({ userId, newRole }, { rejectWithValue }) => {
+  async ({ userId, role }, { rejectWithValue }) => {
     try {
       const state = store.getState();
       const token = state.auth.access_token;
 
       const response = await axios.put(
         `/api/users/role/${userId}`,
-        { role: newRole },
         {
           headers: {
             'Authorization': `Bearer ${token}`,
@@ -96,3 +95,18 @@ export const updateUserRole = createAsyncThunk(
     }
   }
 );
+
+
+
+// export const updateUserRole = async ({ userId, role }) => {
+//   try {
+//     const state = store.getState();
+//     const token = state.auth.access_token;
+//     const response = await axios.put(`/api/users/role/${userId}`, { role }, {headers: {
+//                   'Authorization': `Bearer ${token}`,
+//                 },});
+//     return response.data;
+//   } catch (error) {
+//     throw error;
+//   }
+// };

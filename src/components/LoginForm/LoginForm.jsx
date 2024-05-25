@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../redux/auth/authSlice';
+import { logIn } from '../../redux/auth/authOperations';
 import { toast } from 'react-toastify';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
@@ -38,8 +38,14 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const form = e.currentTarget;
     try {
-      const response = await dispatch(loginUser({ email, password }));
+      const response = await dispatch(
+        logIn({
+          email: form.elements.email.value,
+          password: form.elements.password.value,
+        })
+      );
   
       if (response.error) {
         toast.error('Щось пішло не так. Перевірте е-пошту або введені вами дані ще раз');

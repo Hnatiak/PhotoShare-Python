@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../../redux/auth/authOperations';
+// import { logOut } from '../../redux/auth/authOperations';
 import { updateUser, updateUserAvatar } from '../../redux/users/userOperations';
 import { selectUserAuth } from '../../redux/users/userSelectors';
 import { toast } from 'react-toastify';
@@ -72,7 +72,7 @@ const MyProfile = () => {
 
   const handleLogout = async () => {
     try {
-      await dispatch(logout());
+      // await dispatch(logOut());
       navigate('/');
       toast.success('Ви успішно вийшли з облікового запису');
     } catch (error) {

@@ -5,7 +5,7 @@ export const PhotoList = styled.ul`
   grid-template-columns: repeat(3, 1fr);
   flex-wrap: wrap;
   list-style: none;
-  padding: 45px;
+  padding: 45px 45px 0px 45px;
   gap: 25px;
 `;
 

@@ -33,7 +33,6 @@ export const AddPhotoBtn = styled.button`
     letter-spacing: -0.02em;
     width: 20%;
     height: 49px;
-    margin-top: 24px;
     background: rgb(154, 196, 60);
     border-radius: 8px;
     @media screen and (max-width: 768px) {
@@ -168,5 +167,53 @@ export const CloseButton = styled.button`
   color: #333;
   &:hover {
     color: #000;
+  }
+`;
+
+
+
+
+export const DivSearch = styled.div`
+  display: flex;
+  justify-content: center;
+  padding: 35px 15px;
+
+  form {
+    display: flex;
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+    padding-left: 20px;
+    border: 2px solid #494547;
+    border-radius: 50px 0px 0px 50px;
+    outline: none;
+    background: #F9F0DA;
+    color: #9E9C9C;
+  }
+
+  button {
+    top: 0;
+    right: 0px;
+    width: 42px;
+    height: 42px;
+    border: none;
+    background: #494547;
+    border-radius: 0 50px 50px 0;
+    cursor: pointer;
+  }
+
+  button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+  }
+
+  svg {
+    color: white;
+    font-size: 20px;
+    margin-right: 5px;
   }
 `;

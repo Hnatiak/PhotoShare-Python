@@ -21,7 +21,7 @@ const Photos = () => {
   const handleSave = async (photoId, updatedDetails) => {
     try {
       await dispatch(updatePhotoThunk({ photoId, ...updatedDetails }));
-      toast.success('Фотографія успішно оновлена');
+      toast.success('Дані до посту успішно оновлено');
       toggleEditing(photoId);
     } catch (error) {
       console.error('Error updating photo:', error);
@@ -32,7 +32,7 @@ const Photos = () => {
   const handleDelete = async (photoId) => {
     try {
       await dispatch(deletePhotoThunk(photoId));
-      toast.success('Фотографія успішно видалена');
+      toast.success('Ваш пост успішно видалено');
     } catch (error) {
       console.error('Error deleting photo:', error);
       toast.error('Помилка при видаленні фотографії');
