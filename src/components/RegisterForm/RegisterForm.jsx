@@ -24,7 +24,7 @@ import { useState } from 'react';
 const RegisterSchema = Yup.object().shape({
   name: Yup.string().required('Ім\'я обов\'язкове'),
   email: Yup.string().min(6, 'Е-пошта мусить бути більше 6-ти символів').email('Е-пошта неправильний').required('Е-пошта обов\'язкова'),
-  password: Yup.string().min(8, 'Пароль мусить бути більше 8-ми цифр').required('Пароль обов\'язковий'),
+  password: Yup.string().min(4, 'Пароль мусить бути більше 8-ми цифр').required('Пароль обов\'язковий'),
 });
 
 function RegistrationPage() {
@@ -54,36 +54,6 @@ function RegistrationPage() {
       // navigate(`/auth/confirmed_email?email=${newUser.email}`);
     }
   };
-
-  
-  // const dispatch = useDispatch();
-  // const [userData] = useState({
-  //   username: '',
-  //   email: '',
-  //   password: '',
-  // });
-
-  // const handleChange = (e) => {
-  //   setUserData({ ...userData, [e.target.name]: e.target.value });
-  // };
-
-  // const handleSubmit =  async e => {
-  //   e.preventDefault();
-  //   const newUser = {
-  //     username: e.target.elements.username.value,
-  //     email: e.target.elements.email.value,
-  //     password: e.target.elements.password.value,
-  //   };
-  //   const response = await dispatch(register(newUser));
-
-  //   if (response.error) {
-  //     toast.error("Такий акаунт уже існує")
-  //   } else {
-  //     toast.success("Ви успішно зареєструвалися");
-  //     navigate(`/auth/login`);
-  //     // navigate(`/auth/confirmed_email?email=${newUser.email}`);
-  //   }
-  // };
 
   return (
     <Container>
